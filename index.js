@@ -1,9 +1,12 @@
 const express = require("express");
 const mysql = require("mysql2");
 const db = require("./db");
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.json()); // JSON data handle karne ke liye
+
+require("dotenv").config();
 
 app.post("/users", (req, res) => {
   const { name, email } = req.body;
@@ -81,7 +84,7 @@ app.delete("/users/:id", (req, res) => {
   });
 }); // delete data
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
 
